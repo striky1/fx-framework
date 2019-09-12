@@ -1,0 +1,38 @@
+{
+  "name": "fx-framework",
+  "version": "1.0.0",
+  "description": "Pure CSS Flex-Layout based on angular/flex-layout",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Lukáš Strišovský",
+    "email": "info@striky.sk",
+    "url": "https://www.striky.sk"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/striky1/fx-framework"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/gulp": "^4.0.6",
+    "@types/gulp-autoprefixer": "0.0.31",
+    "@types/gulp-sass": "0.0.31",
+    "@types/gulp-sourcemaps": "0.0.32",
+    "@types/node": "^10.14.17",
+    "@types/yargs": "^11.1.2"
+  },
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^6.1.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "sass-mq": "^5.0.1",
+    "ts-loader": "^5.4.5",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.6.2",
+    "yargs": "^11.1.0"
+  }
+}

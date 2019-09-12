@@ -1,0 +1,452 @@
+$prefix-map: (
+    none: '',
+    bp: '\\@',
+    lt: '\\@lt-',
+    gt: '\\@gt-'
+);
+
+$fx-breakpoints: (
+    xs: 0,
+    sm: 600px,
+    md: 960px,
+    lg: 1280px,
+    xl: 1920px
+) !default;
+
+/* *** FLEX LAYOUT *** */
+@mixin fx-framework__layout($prefix: 'none', $breakpoint: '') {
+  $prefix-from-map: map-get($prefix-map, $prefix);
+
+  .fx-layout#{$prefix-from-map}#{$breakpoint} {
+    display: flex;
+    box-sizing: border-box;
+  }
+
+  .fx-layout--row#{$prefix-from-map}#{$breakpoint} {
+    flex-direction: row;
+
+    &[class*='fx-layout-align--'] {
+      max-height: 100%;
+    }
+  }
+
+  .fx-layout--column#{$prefix-from-map}#{$breakpoint} {
+    flex-direction: column;
+
+    &[class*='fx-layout-align--'] {
+      max-width: 100%;
+    }
+  }
+
+  .fx-layout--wrap#{$prefix-from-map}#{$breakpoint} {
+    flex-wrap: wrap;
+  }
+
+  .fx-layout--wrap-reverse#{$prefix-from-map}#{$breakpoint} {
+    flex-wrap: wrap-reverse;
+  }
+
+  .fx-layout--no-wrap#{$prefix-from-map}#{$breakpoint} {
+    flex-wrap: nowrap;
+  }
+}
+
+@include fx-framework__layout;
+/* *** END *** */
+
+/* *** FLEX LAYOUT ALIGN *** */
+@mixin fx-framework__layout-align($prefix: 'none', $breakpoint: '') {
+  $prefix-from-map: map-get($prefix-map, $prefix);
+
+  .fx-layout-align#{$prefix-from-map}#{$breakpoint} {
+    &:not(.fx-layout) {
+      display: flex;
+      flex-direction: row;
+      box-sizing: border-box;
+
+      max-height: 100%;
+    }
+  }
+
+  .fx-layout-align--none-none#{$prefix-from-map}#{$breakpoint} {
+    align-items: stretch;
+    place-content: stretch flex-start;
+  }
+
+  .fx-layout-align--start-none#{$prefix-from-map}#{$breakpoint} {
+    align-items: stretch;
+    place-content: stretch flex-start;
+  }
+
+  .fx-layout-align--center-none#{$prefix-from-map}#{$breakpoint} {
+    align-items: stretch;
+    place-content: stretch center;
+  }
+
+  .fx-layout-align--end-none#{$prefix-from-map}#{$breakpoint} {
+    align-items: stretch;
+    place-content: stretch flex-end;
+  }
+
+  .fx-layout-align--space-around-none#{$prefix-from-map}#{$breakpoint} {
+    align-items: stretch;
+    place-content: stretch space-around;
+  }
+
+  .fx-layout-align--space-between-none#{$prefix-from-map}#{$breakpoint} {
+    align-items: stretch;
+    place-content: stretch space-between;
+  }
+
+  .fx-layout-align--space-evenly-none#{$prefix-from-map}#{$breakpoint} {
+    align-items: stretch;
+    place-content: stretch space-evenly;
+  }
+
+  // --------------------------------
+
+  .fx-layout-align--none-start#{$prefix-from-map}#{$breakpoint} {
+    align-items: flex-start;
+    place-content: flex-start;
+  }
+
+  .fx-layout-align--start-start#{$prefix-from-map}#{$breakpoint} {
+    align-items: flex-start;
+    place-content: flex-start;
+  }
+
+  .fx-layout-align--center-start#{$prefix-from-map}#{$breakpoint} {
+    align-items: flex-start;
+    place-content: flex-start center;
+  }
+
+  .fx-layout-align--end-start#{$prefix-from-map}#{$breakpoint} {
+    align-items: flex-start;
+    place-content: flex-start flex-end;
+  }
+
+  .fx-layout-align--space-around-start#{$prefix-from-map}#{$breakpoint} {
+    align-items: flex-start;
+    place-content: flex-start space-around;
+  }
+
+  .fx-layout-align--space-between-start#{$prefix-from-map}#{$breakpoint} {
+    align-items: flex-start;
+    place-content: flex-start space-between;
+  }
+
+  .fx-layout-align--space-evenly-start#{$prefix-from-map}#{$breakpoint} {
+    align-items: flex-start;
+    place-content: flex-start space-evenly;
+  }
+
+  // --------------------------------
+
+  .fx-layout-align--none-center#{$prefix-from-map}#{$breakpoint} {
+    align-items: center;
+    place-content: center flex-start;
+  }
+
+  .fx-layout-align--start-center#{$prefix-from-map}#{$breakpoint} {
+    align-items: center;
+    place-content: center flex-start;
+  }
+
+  .fx-layout-align--center-center#{$prefix-from-map}#{$breakpoint} {
+    align-items: center;
+    place-content: center;
+  }
+
+  .fx-layout-align--end-center#{$prefix-from-map}#{$breakpoint} {
+    align-items: center;
+    place-content: center flex-end;
+  }
+
+  .fx-layout-align--space-around-center#{$prefix-from-map}#{$breakpoint} {
+    align-items: center;
+    place-content: center space-around;
+  }
+
+  .fx-layout-align--space-between-center#{$prefix-from-map}#{$breakpoint} {
+    align-items: center;
+    place-content: center space-between;
+  }
+
+  .fx-layout-align--space-evenly-center#{$prefix-from-map}#{$breakpoint} {
+    align-items: center;
+    place-content: center space-evenly;
+  }
+
+  // --------------------------------
+
+  .fx-layout-align--none-end#{$prefix-from-map}#{$breakpoint} {
+    align-items: flex-end;
+    place-content: flex-end flex-start;
+  }
+
+  .fx-layout-align--start-end#{$prefix-from-map}#{$breakpoint} {
+    align-items: flex-end;
+    place-content: flex-end flex-start;
+  }
+
+  .fx-layout-align--center-end#{$prefix-from-map}#{$breakpoint} {
+    align-items: flex-end;
+    place-content: flex-end center;
+  }
+
+  .fx-layout-align--end-end#{$prefix-from-map}#{$breakpoint} {
+    align-items: flex-end;
+    place-content: flex-end;
+  }
+
+  .fx-layout-align--space-around-end#{$prefix-from-map}#{$breakpoint} {
+    align-items: flex-end;
+    place-content: flex-end space-around;
+  }
+
+  .fx-layout-align--space-between-end#{$prefix-from-map}#{$breakpoint} {
+    align-items: flex-end;
+    place-content: flex-end space-between;
+  }
+
+  .fx-layout-align--space-evenly-end#{$prefix-from-map}#{$breakpoint} {
+    align-items: flex-end;
+    place-content: flex-end space-evenly;
+  }
+
+  // --------------------------------
+
+  .fx-layout-align--none-stretch#{$prefix-from-map}#{$breakpoint} {
+    align-items: stretch;
+    place-content: stretch flex-start;
+  }
+
+  .fx-layout-align--start-stretch#{$prefix-from-map}#{$breakpoint} {
+    align-items: stretch;
+    place-content: stretch flex-start;
+  }
+
+  .fx-layout-align--center-stretch#{$prefix-from-map}#{$breakpoint} {
+    align-items: stretch;
+    place-content: stretch center;
+  }
+
+  .fx-layout-align--end-stretch#{$prefix-from-map}#{$breakpoint} {
+    align-items: stretch;
+    place-content: stretch flex-end;
+  }
+
+  .fx-layout-align--space-around-stretch#{$prefix-from-map}#{$breakpoint} {
+    align-items: stretch;
+    place-content: stretch space-around;
+  }
+
+  .fx-layout-align--space-between-stretch#{$prefix-from-map}#{$breakpoint} {
+    align-items: stretch;
+    place-content: stretch space-between;
+  }
+
+  .fx-layout-align--space-evenly-stretch#{$prefix-from-map}#{$breakpoint} {
+    align-items: stretch;
+    place-content: stretch space-evenly;
+  }
+}
+
+@include fx-framework__layout-align;
+/* *** END *** */
+
+/* *** FLEX FILL ***
+  Note: Use with .fx-layout
+ */
+@mixin fx-framework__fx-fill($prefix: 'none', $breakpoint: '') {
+  $prefix-from-map: map-get($prefix-map, $prefix);
+
+  .fx-fill#{$prefix-from-map}#{$breakpoint} {
+    width: 100%;
+    min-width: 100%;
+    height: 100%;
+    min-height: 100%;
+  }
+}
+
+@include fx-framework__fx-fill;
+/* *** END *** */
+
+/* *** FLEX TO FILL ROW ***
+  Note: Use with .fx-layout--row
+ */
+@mixin fx-framework__fx-flex($prefix: 'none', $breakpoint: '') {
+  $prefix-from-map: map-get($prefix-map, $prefix);
+
+  .fx-flex#{$prefix-from-map}#{$breakpoint},
+  .fx-flex--0#{$prefix-from-map}#{$breakpoint} {
+    flex: 1 1 0;
+    box-sizing: border-box;
+  }
+
+  @for $i from 1 through 20 {
+    .fx-flex--#{$i * 5}#{$prefix-from-map}#{$breakpoint} {
+      flex: 1 1 100%;
+      box-sizing: border-box;
+      max-width: $i * 5%;
+    }
+  }
+
+  .fx-flex--none#{$prefix-from-map}#{$breakpoint} {
+    flex: 0 0 auto;
+    box-sizing: border-box;
+  }
+
+  .fx-flex--no-grow#{$prefix-from-map}#{$breakpoint} {
+    flex: 0 1 auto;
+    box-sizing: border-box;
+  }
+
+  .fx-flex--grow#{$prefix-from-map}#{$breakpoint} {
+    flex: 1 1 100%;
+    box-sizing: border-box;
+
+    max-width: 100%;
+  }
+
+  .fx-flex--initial#{$prefix-from-map}#{$breakpoint} {
+    flex: 0 1 auto;
+    box-sizing: border-box;
+  }
+
+  .fx-flex--auto#{$prefix-from-map}#{$breakpoint} {
+    flex: 1 1 auto;
+    box-sizing: border-box;
+  }
+
+  .fx-flex--no-shrink#{$prefix-from-map}#{$breakpoint} {
+    flex: 1 0 auto;
+    box-sizing: border-box;
+  }
+}
+
+@include fx-framework__fx-flex;
+/* *** END *** */
+
+/* *** FLEX OFFSET *** */
+@mixin fx-framework__fx-offset($prefix: 'none', $breakpoint: '') {
+  $prefix-from-map: map-get($prefix-map, $prefix);
+
+  @for $i from 1 through 20 {
+    .fx-flex--offset-#{$i * 5}#{$prefix-from-map}#{$breakpoint} {
+      margin-left: $i * 5%;
+    }
+  }
+}
+
+@include fx-framework__fx-offset;
+/* *** END *** */
+
+/* *** FLEX ALIGN *** */
+@mixin fx-framework__fx-align($prefix: 'none', $breakpoint: '') {
+  $prefix-from-map: map-get($prefix-map, $prefix);
+
+  .fx-flex-align#{$prefix-from-map}#{$breakpoint} {
+    align-self: auto;
+  }
+
+  .fx-flex-align--start#{$prefix-from-map}#{$breakpoint} {
+    align-self: flex-start;
+  }
+
+  .fx-flex-align--center#{$prefix-from-map}#{$breakpoint} {
+    align-self: center;
+  }
+
+  .fx-flex-align--baseline#{$prefix-from-map}#{$breakpoint} {
+    align-self: baseline;
+  }
+
+  .fx-flex-align--end#{$prefix-from-map}#{$breakpoint} {
+    align-self: flex-end;
+  }
+
+  .fx-flex-align--stretch#{$prefix-from-map}#{$breakpoint} {
+    align-self: stretch;
+  }
+}
+
+@include fx-framework__fx-align;
+/* *** END *** */
+
+$i: 1;
+$length: length($fx-breakpoints);
+@each $name, $values in $fx-breakpoints {
+  @if type-of($values) == 'number' {
+    $next-key: '';
+    $next-value: '';
+
+    @if ($i + 1 <= $length) {
+      $next-key: nth(nth($fx-breakpoints, $i + 1), 1);
+      $next-value: nth(nth($fx-breakpoints, $i + 1), 2);
+    }
+
+    @if ($i == 1) {
+      @include mq($until: $next-key) {
+        @include fx-framework__layout(bp, $name);
+        @include fx-framework__layout-align(bp, $name);
+        @include fx-framework__fx-fill(bp, $name);
+        @include fx-framework__fx-flex(bp, $name);
+        @include fx-framework__fx-offset(bp, $name);
+        @include fx-framework__fx-align(bp, $name);
+      }
+      @include mq($from: $next-key) {
+        @include fx-framework__layout(gt, $name);
+        @include fx-framework__layout-align(gt, $name);
+        @include fx-framework__fx-fill(gt, $name);
+        @include fx-framework__fx-flex(gt, $name);
+        @include fx-framework__fx-offset(gt, $name);
+        @include fx-framework__fx-align(gt, $name);
+      }
+    } @else if ($i + 1 > $length) {
+      @include mq($until: $name) {
+        @include fx-framework__layout(lt, $name);
+        @include fx-framework__layout-align(lt, $name);
+        @include fx-framework__fx-fill(lt, $name);
+        @include fx-framework__fx-flex(lt, $name);
+        @include fx-framework__fx-offset(lt, $name);
+        @include fx-framework__fx-align(lt, $name);
+      }
+      @include mq($from: $name) {
+        @include fx-framework__layout(bp, $name);
+        @include fx-framework__layout-align(bp, $name);
+        @include fx-framework__fx-fill(bp, $name);
+        @include fx-framework__fx-flex(bp, $name);
+        @include fx-framework__fx-offset(bp, $name);
+        @include fx-framework__fx-align(bp, $name);
+      }
+    } @else {
+      @include mq($until: $name) {
+        @include fx-framework__layout(lt, $name);
+        @include fx-framework__layout-align(lt, $name);
+        @include fx-framework__fx-fill(lt, $name);
+        @include fx-framework__fx-flex(lt, $name);
+        @include fx-framework__fx-offset(lt, $name);
+        @include fx-framework__fx-align(lt, $name);
+      }
+      @include mq($from: $name, $until: $next-key) {
+        @include fx-framework__layout(bp, $name);
+        @include fx-framework__layout-align(bp, $name);
+        @include fx-framework__fx-fill(bp, $name);
+        @include fx-framework__fx-flex(bp, $name);
+        @include fx-framework__fx-offset(bp, $name);
+        @include fx-framework__fx-align(bp, $name);
+      }
+      @include mq($from: $next-key) {
+        @include fx-framework__layout(gt, $name);
+        @include fx-framework__layout-align(gt, $name);
+        @include fx-framework__fx-fill(gt, $name);
+        @include fx-framework__fx-flex(gt, $name);
+        @include fx-framework__fx-offset(gt, $name);
+        @include fx-framework__fx-align(gt, $name);
+      }
+    }
+  }
+
+  $i: $i + 1;
+}

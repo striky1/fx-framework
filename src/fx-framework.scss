@@ -1,0 +1,18 @@
+// *** styles.scss *** //
+// Contains all SCSS files, generates one index.css file. @import list must end with a semicolon;
+@import
+
+// =================================================================
+// Settings - data, maps, constants
+// =================================================================
+'settings/variables',
+
+// =================================================================
+// External - vendor stylesheets
+// =================================================================
+'../node_modules/sass-mq/mq',
+
+// =================================================================
+// Generic - framework
+// =================================================================
+'core/fx-framework';
