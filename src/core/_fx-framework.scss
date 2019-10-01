@@ -374,77 +374,80 @@ $fx-breakpoints: (
 @include fx-framework__fx-align;
 /* *** END *** */
 
+$filtered-fx-breakpoints: ();
+@each $name, $value in $fx-breakpoints {
+  @if type-of($value) == 'number' {
+    $filtered-fx-breakpoints: map-merge($filtered-fx-breakpoints, ($name: $value));
+  }
+}
+
 $i: 1;
-$length: length($fx-breakpoints);
-@each $name, $values in $fx-breakpoints {
-  @if type-of($values) == 'number' {
-    $next-key: '';
-    $next-value: '';
+$length: length($filtered-fx-breakpoints);
+@each $name, $value in $filtered-fx-breakpoints {
+  $next-key: '';
 
-    @if ($i + 1 <= $length) {
-      $next-key: nth(nth($fx-breakpoints, $i + 1), 1);
-      $next-value: nth(nth($fx-breakpoints, $i + 1), 2);
+  @if ($i + 1 <= $length) {
+    $next-key: nth(nth($filtered-fx-breakpoints, $i + 1), 1);
+  }
+
+  @if ($i == 1) {
+    @include mq($until: $next-key) {
+      @include fx-framework__layout(bp, $name);
+      @include fx-framework__layout-align(bp, $name);
+      @include fx-framework__fx-fill(bp, $name);
+      @include fx-framework__fx-flex(bp, $name);
+      @include fx-framework__fx-offset(bp, $name);
+      @include fx-framework__fx-align(bp, $name);
     }
-
-    @if ($i == 1) {
-      @include mq($until: $next-key) {
-        @include fx-framework__layout(bp, $name);
-        @include fx-framework__layout-align(bp, $name);
-        @include fx-framework__fx-fill(bp, $name);
-        @include fx-framework__fx-flex(bp, $name);
-        @include fx-framework__fx-offset(bp, $name);
-        @include fx-framework__fx-align(bp, $name);
-      }
-      @include mq($from: $next-key) {
-        @include fx-framework__layout(gt, $name);
-        @include fx-framework__layout-align(gt, $name);
-        @include fx-framework__fx-fill(gt, $name);
-        @include fx-framework__fx-flex(gt, $name);
-        @include fx-framework__fx-offset(gt, $name);
-        @include fx-framework__fx-align(gt, $name);
-      }
-    } @else if ($i + 1 > $length) {
-      @include mq($until: $name) {
-        @include fx-framework__layout(lt, $name);
-        @include fx-framework__layout-align(lt, $name);
-        @include fx-framework__fx-fill(lt, $name);
-        @include fx-framework__fx-flex(lt, $name);
-        @include fx-framework__fx-offset(lt, $name);
-        @include fx-framework__fx-align(lt, $name);
-      }
-      @include mq($from: $name) {
-        @include fx-framework__layout(bp, $name);
-        @include fx-framework__layout-align(bp, $name);
-        @include fx-framework__fx-fill(bp, $name);
-        @include fx-framework__fx-flex(bp, $name);
-        @include fx-framework__fx-offset(bp, $name);
-        @include fx-framework__fx-align(bp, $name);
-      }
-    } @else {
-      @include mq($until: $name) {
-        @include fx-framework__layout(lt, $name);
-        @include fx-framework__layout-align(lt, $name);
-        @include fx-framework__fx-fill(lt, $name);
-        @include fx-framework__fx-flex(lt, $name);
-        @include fx-framework__fx-offset(lt, $name);
-        @include fx-framework__fx-align(lt, $name);
-      }
-      @include mq($from: $name, $until: $next-key) {
-        @include fx-framework__layout(bp, $name);
-        @include fx-framework__layout-align(bp, $name);
-        @include fx-framework__fx-fill(bp, $name);
-        @include fx-framework__fx-flex(bp, $name);
-        @include fx-framework__fx-offset(bp, $name);
-        @include fx-framework__fx-align(bp, $name);
-      }
-      @include mq($from: $next-key) {
-        @include fx-framework__layout(gt, $name);
-        @include fx-framework__layout-align(gt, $name);
-        @include fx-framework__fx-fill(gt, $name);
-        @include fx-framework__fx-flex(gt, $name);
-        @include fx-framework__fx-offset(gt, $name);
-        @include fx-framework__fx-align(gt, $name);
-      }
+    @include mq($from: $next-key) {
+      @include fx-framework__layout(gt, $name);
+      @include fx-framework__layout-align(gt, $name);
+      @include fx-framework__fx-fill(gt, $name);
+      @include fx-framework__fx-flex(gt, $name);
+      @include fx-framework__fx-offset(gt, $name);
+      @include fx-framework__fx-align(gt, $name);
+    }
+  } @else if ($i + 1 > $length) {
+    @include mq($until: $name) {
+      @include fx-framework__layout(lt, $name);
+      @include fx-framework__layout-align(lt, $name);
+      @include fx-framework__fx-fill(lt, $name);
+      @include fx-framework__fx-flex(lt, $name);
+      @include fx-framework__fx-offset(lt, $name);
+      @include fx-framework__fx-align(lt, $name);
+    }
+    @include mq($from: $name) {
+      @include fx-framework__layout(bp, $name);
+      @include fx-framework__layout-align(bp, $name);
+      @include fx-framework__fx-fill(bp, $name);
+      @include fx-framework__fx-flex(bp, $name);
+      @include fx-framework__fx-offset(bp, $name);
+      @include fx-framework__fx-align(bp, $name);
+    }
+  } @else {
+    @include mq($until: $name) {
+      @include fx-framework__layout(lt, $name);
+      @include fx-framework__layout-align(lt, $name);
+      @include fx-framework__fx-fill(lt, $name);
+      @include fx-framework__fx-flex(lt, $name);
+      @include fx-framework__fx-offset(lt, $name);
+      @include fx-framework__fx-align(lt, $name);
+    }
+    @include mq($from: $name, $until: $next-key) {
+      @include fx-framework__layout(bp, $name);
+      @include fx-framework__layout-align(bp, $name);
+      @include fx-framework__fx-fill(bp, $name);
+      @include fx-framework__fx-flex(bp, $name);
+      @include fx-framework__fx-offset(bp, $name);
+      @include fx-framework__fx-align(bp, $name);
+    }
+    @include mq($from: $next-key) {
+      @include fx-framework__layout(gt, $name);
+      @include fx-framework__layout-align(gt, $name);
+      @include fx-framework__fx-fill(gt, $name);
+      @include fx-framework__fx-flex(gt, $name);
+      @include fx-framework__fx-offset(gt, $name);
+      @include fx-framework__fx-align(gt, $name);
     }
   }
 
